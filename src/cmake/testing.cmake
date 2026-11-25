@@ -531,15 +531,15 @@ macro (osl_add_all_tests)
     # the variants TESTSUITE() generates -- optimized, batched, rs_bitcode,
     # optix -- mean anything for a test that never executes a shader.
     if (USE_PYTHON AND Python3_Development_FOUND AND NOT SANITIZE)
-        set (_py_testsrc "${CMAKE_SOURCE_DIR}/testsuite/python-oslquery")
+        set (_py_testsrc "${PROJECT_SOURCE_DIR}/testsuite/python-oslquery")
         osl_tests_pythonpath_env_entry (_pybind_pypath
-                                        "${CMAKE_BINARY_DIR}/lib/python/site-packages")
+                                        "${PROJECT_BINARY_DIR}/lib/python/site-packages")
         if (OSL_PYTHON_BINDINGS_BACKEND STREQUAL "both")
             # In "both" mode the nanobind module is kept in its own build-tree
             # package so it doesn't shadow the pybind11 one, which owns
             # lib/python/site-packages.
             osl_tests_pythonpath_env_entry (_nb_pypath
-                                            "${CMAKE_BINARY_DIR}/lib/python/nanobind")
+                                            "${PROJECT_BINARY_DIR}/lib/python/nanobind")
         else ()
             # nanobind-only builds put the module exactly where pybind11
             # would have, so the same path serves.
